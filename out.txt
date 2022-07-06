@@ -1,0 +1,32 @@
+bitcount
+qsort
+susan
+dijkstra
+patricia
+stringsearch
+rijndael
+rm -rf rijndael output*
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3 -o rijndael aes.c aesxam.c
+sha
+rm -rf *.o sha output*
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -O3 -Wall   -c -o sha_driver.o sha_driver.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -O3 -Wall   -c -o sha.o sha.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -o sha sha_driver.o sha.o
+adpcm
+rm -f *.o ; rm rawcaudio rawdaudio timing ; rm -f ../bin/* ../output*
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3   -c -o adpcm.o adpcm.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3   -c -o rawcaudio.o rawcaudio.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3 rawcaudio.o adpcm.o -o rawcaudio
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3   -c -o rawdaudio.o rawdaudio.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3 rawdaudio.o adpcm.o -o rawdaudio
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3   -c -o timing.o timing.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3 timing.o adpcm.o -o timing
+cp rawcaudio rawdaudio timing ../bin/.
+Makefile:28: recipe for target 'all' failed
+CRC32
+fft
+rm -rf *.o fft output*
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3 -g -c main.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3 -g -c fftmisc.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3 -g -c fourierf.c
+/home/ywang/chipyard/riscv-tools-install/bin/riscv64-unknown-elf-gcc -static -O3 -g main.o fftmisc.o  fourierf.o -o fft -lm
